@@ -99,7 +99,7 @@ DB_DATABASE_NAME=${database}
           db_config.setPassword = password;
           db_config.setDatabase = database;
           
-          knex.migrate.down().then((down) => {
+          knex.migrate.currentVersion().then((down) => {
             knex.migrate.latest()
             .then((mig) => {
               return res.json({message:"Tabelas criadas com sucesso!", mig})
