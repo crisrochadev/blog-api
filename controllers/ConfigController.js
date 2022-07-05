@@ -99,13 +99,16 @@ DB_DATABASE_NAME=${database}
           db_config.setPassword = password;
           db_config.setDatabase = database;
           
-          knex.migrate.latest()
-          .then((mig) => {
-            return res.json({message:"Tabelas criadas com sucesso!", mig})
+          knex.migrate.down().then((down) => {
+            knex.migrate.latest()
+            .then((mig) => {
+              return res.json({message:"Tabelas criadas com sucesso!", mig})
+            })
+            .catch((err) => {
+              return res.json({message:"As tabelas não foram criadas", err})
+            })
           })
-          .catch((err) => {
-            return res.json({message:"As tabelas não foram criadas", err})
-          })
+          
         }
       })
     } catch (error) {
