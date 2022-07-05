@@ -6,7 +6,7 @@
  knex.schema.createTable("config", (table) => {
    table.increments("id");
    table.text("user").notNullable();
-   table.text("email").notNullable().unique();
+   table.text("email").notNullable();
    table.text("password").notNullable();
    table.text("name");
    table.text("key").notNullable();
