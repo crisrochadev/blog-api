@@ -5,7 +5,7 @@
 export const up = (knex) =>
   knex.schema.createTable("categories", (table) => {
     table.increments("id");
-    table.text("name").unique().notNullable();
+    table.text("name").notNullable();
     table.text("slug");
     table.dateTime("created_at").defaultTo(knex.raw("CURRENT_TIMESTAMP"));
     table
